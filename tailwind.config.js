@@ -13,7 +13,7 @@ module.exports = {
         },
       },
       "light",
-      "dark",
+      // "dark",
       "cupcake",
     ],
   },
