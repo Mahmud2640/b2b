@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { FiHelpCircle } from "react-icons/fi";
 import { MdPersonPin, MdAccountBalance } from "react-icons/md";
+import Aircity from "../../assets/aircity.png";
 
 const Navbar = () => {
   return (
@@ -59,14 +60,14 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          AircityBD
+        <Link to="/" className="w-auto">
+          <img src={Aircity} alt="aircity" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal space-x-10">
           <div className="form-control">
-            <div className="input-group">
+            <div className="input-group ml-5">
               <input
                 type="text"
                 placeholder="Search…"
@@ -106,7 +107,7 @@ const Navbar = () => {
       <div className="navbar-end space-x-8 mr-4">
         <div className="dropdown dropdown-hover dropdown-end">
           <label tabIndex={0} className="btn m-1">
-            <FiHelpCircle className="mr-2" />
+            <FiHelpCircle className="mr-2 h-4 w-4" />
             Help
           </label>
           <div
@@ -121,8 +122,7 @@ const Navbar = () => {
         </div>
         <Link to="logout">
           <button className="btn">
-            <RiLogoutCircleRLine className="mr-2" />
-            Logout
+            <RiLogoutCircleRLine className="mr-2 h-8 w-8" />
           </button>
         </Link>
       </div>
