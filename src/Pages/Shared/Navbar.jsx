@@ -107,7 +107,7 @@ const Navbar = () => {
       <div className="navbar-end space-x-8 mr-4">
         <div className="dropdown dropdown-hover dropdown-end">
           <label tabIndex={0} className="btn m-1">
-            <FiHelpCircle className="mr-2 h-4 w-4" />
+            <FiHelpCircle size={19} className="mr-2" />
             Help
           </label>
           <div
@@ -122,7 +122,7 @@ const Navbar = () => {
         </div>
         <Link to="logout">
           <button className="btn">
-            <RiLogoutCircleRLine className="mr-2 h-8 w-8" />
+            <RiLogoutCircleRLine size={20} className="mr-2" />
           </button>
         </Link>
       </div>

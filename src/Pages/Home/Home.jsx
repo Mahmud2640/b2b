@@ -1,68 +1,74 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Logo from "../../assets/logo.png"
 import { FaSearch } from "react-icons/fa";
-import Control from "../../assets/control.png";
-import Logo from "../../assets/logo.png";
+// import { HiMenuAlt3 } from "react-icons/hi";
+import { MdOutlineDashboard } from "react-icons/md";
+import { RiSettings4Line } from "react-icons/ri";
+import { TbReportAnalytics } from "react-icons/tb";
+import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
+import { FiMessageSquare, FiFolder, FiShoppingCart } from "react-icons/fi";
 const Home = () => {
-  const [open, setOpen] = useState(true);
-  const Menus = [
-    { title: "Dashboard", src: "Chart_fill" },
-    { title: "Inbox", src: "Chat" },
-    { title: "Accounts", src: "User", gap: true },
-    { title: "Schedule ", src: "Calendar" },
-    { title: "Search", src: "Search" },
-    { title: "Analytics", src: "Chart" },
-    { title: "Files ", src: "Folder", gap: true },
-    { title: "Setting", src: "Setting" },
+  const [open, setOpen] = useState(false);
+  const menus = [
+    { name: "dashboard", link: "/", icon: MdOutlineDashboard },
+    { name: "user", link: "/", icon: AiOutlineUser },
+    { name: "messages", link: "/", icon: FiMessageSquare },
+    { name: "analytics", link: "/", icon: TbReportAnalytics, margin: true },
+    { name: "File Manager", link: "/", icon: FiFolder },
+    { name: "Cart", link: "/", icon: FiShoppingCart },
+    { name: "Saved", link: "/", icon: AiOutlineHeart, margin: true },
+    { name: "Setting", link: "/", icon: RiSettings4Line },
   ];
   return (
     <div className="bg-gradient-to-r from-[#03345B] to-[#265A85]">
       {/* Search Pad */}
-      <div className="flex">
+      <section className="flex gap-6">
         <div
-          className={` ${
-            open ? "w-72" : "w-20 "
-          } bg-primary h-screen p-5  pt-8 relative duration-300`}
+          className={`bg-[#0e0e0e] min-h-screen ${
+            open ? "w-72" : "w-16"
+          } duration-500 text-gray-100 px-4`}
         >
-          <img
-            src={Control}
-            className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
-           border-2 rounded-full  ${!open && "rotate-180"}`}
-            onClick={() => setOpen(!open)} alt="control"
-          />
-          <div className="flex gap-x-4 items-center">
-            <img
-              src={Logo}
-              className={`cursor-pointer duration-500 ${
-                open && "rotate-[360deg]"
-              }`} alt="logo"
-            />
-            <h1
-              className={`text-white origin-left font-medium text-xl duration-200 ${
-                !open && "scale-0"
-              }`}
-            >
-              Designer
-            </h1>
+          <div className="py-3 flex justify-end">
+            <img className="cursor-pointer h-30 w-30" onClick={() => setOpen(!open)} src={Logo} alt="logo" />
+            {/* <HiMenuAlt3
+              size={26}
+              className="cursor-pointer"
+              onClick={() => setOpen(!open)}
+            /> */}
           </div>
-          <ul className="pt-6">
-            {Menus.map((Menu, index) => (
-              <li
-                key={index}
-                className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-              ${Menu.gap ? "mt-9" : "mt-2"} ${
-                  index === 0 && "bg-light-white"
-                } `}
+          <div className="mt-4 flex flex-col gap-4 relative">
+            {menus?.map((menu, i) => (
+              <Link
+                to={menu?.link}
+                key={i}
+                className={` ${
+                  menu?.margin && "mt-5"
+                } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
               >
-                <img src={`./src/assets/${Menu.src}.png`} />
-                <span
-                  className={`${!open && "hidden"} origin-left duration-200`}
+                <div>{React.createElement(menu?.icon, { size: "20" })}</div>
+                <h2
+                  style={{
+                    transitionDelay: `${i + 3}00ms`,
+                  }}
+                  className={`whitespace-pre duration-500 ${
+                    !open && "opacity-0 translate-x-28 overflow-hidden"
+                  }`}
                 >
-                  {Menu.title}
-                </span>
-              </li>
+                  {menu?.name}
+                </h2>
+                <h2
+                  className={`${
+                    open && "hidden"
+                  } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+                >
+                  {menu?.name}
+                </h2>
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
+
         <div className="h-screen flex-1 p-7">
           <div className="flex justify-center">
             <div className="text-center shadow-md w-6/12 p-3 card bg-base-200 mt-10">
@@ -171,7 +177,7 @@ const Home = () => {
               <div className="flex justify-center -mb-5">
                 <button className="btn bg-gradient-to-r from-[#DA143B] to-[#8E100B]">
                   Search
-                  <FaSearch className="m-2" />
+                  <FaSearch size={19} className="m-2" />
                 </button>
               </div>
             </div>
@@ -195,7 +201,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
